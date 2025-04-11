@@ -19,7 +19,7 @@ def main():
     }
 
     for n, d in source["frames"].items():
-        animation = n.split("-")[0]
+        animation = n.split(" ")[0]
 
         rectangle = {
             "x": d["frame"]["x"],
