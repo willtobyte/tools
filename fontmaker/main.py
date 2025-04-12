@@ -70,6 +70,7 @@ def main():
             {
                 "glyphs": "".join(glyphs),
                 "spritesheet": f"blobs/{name}.png",
+                "spacing": 0,
             },
             f,
             indent=2,
