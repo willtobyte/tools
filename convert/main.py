@@ -14,7 +14,6 @@ def main():
         source = json.load(f)
 
     result = {
-        "spritesheet": f"blobs/{source['meta']['image']}",
         "animations": {},
     }
 
