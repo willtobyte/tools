@@ -1,0 +1,5 @@
+langchain==0.3.25
+langchain-openai==0.3.16
+langcodes==3.5.0
+openai==1.77.0
+pydantic==2.11.4
