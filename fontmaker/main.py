@@ -15,7 +15,11 @@ def main():
 
     face = freetype.Face(arguments.font)
     face.set_char_size(arguments.size * 64)
-    glyphs = [chr(cp) for cp in range(32, 128) if face.get_char_index(cp)]
+    glyphs = []
+    charcode, gindex = face.get_first_char()
+    while gindex != 0:
+        glyphs.append(chr(charcode))
+        charcode, gindex = face.get_next_char(charcode, gindex)
 
     font = ImageFont.truetype(arguments.font, arguments.size)
     ascent, descent = font.getmetrics()
