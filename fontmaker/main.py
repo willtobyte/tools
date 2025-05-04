@@ -18,7 +18,9 @@ def main():
     glyphs = []
     charcode, gindex = face.get_first_char()
     while gindex != 0:
-        glyphs.append(chr(charcode))
+        ch = chr(charcode)
+        if ch.encode("utf-8", errors="ignore"):
+            glyphs.append(ch)
         charcode, gindex = face.get_next_char(charcode, gindex)
 
     font = ImageFont.truetype(arguments.font, arguments.size)
@@ -40,16 +42,13 @@ def main():
         offset_x = (cell_width - w) // 2 - bbox[0]
         offset_y = (cell_height - h) // 2 - bbox[1]
 
-        scale = 4
-        hires_size = (cell_width * scale, cell_height * scale)
-        glyph_img = Image.new("L", hires_size, 0)
-        hires_font = ImageFont.truetype(arguments.font, arguments.size * scale)
+        glyph_img = Image.new("1", (cell_width, cell_height), 0)
         glyph_draw = ImageDraw.Draw(glyph_img)
-        glyph_draw.text((offset_x * scale, offset_y * scale), ch, font=hires_font, fill=255)
+        glyph_draw.text((offset_x, offset_y), ch, font=font, fill=1)
 
-        glyph_img = glyph_img.resize((cell_width, cell_height), resample=Image.LANCZOS)
-        rgba_glyph = Image.new("RGBA", (cell_width, cell_height), (255, 255, 255, 0))
-        rgba_glyph.putalpha(glyph_img)
+        mask = glyph_img.convert("L")
+        rgba_glyph = Image.new("RGBA", (cell_width, cell_height), (255,255,255,0))
+        rgba_glyph.putalpha(mask)
         sheet.alpha_composite(rgba_glyph, dest=(x, 0))
 
         x += cell_width
