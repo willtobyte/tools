@@ -23,8 +23,8 @@ def main():
         quad = {
             "x": d["frame"]["x"],
             "y": d["frame"]["y"],
-            "width": d["frame"]["w"],
-            "height": d["frame"]["h"],
+            "w": d["frame"]["w"],
+            "h": d["frame"]["h"],
         }
 
         offset = {
