@@ -20,7 +20,7 @@ def main():
     for n, d in source["frames"].items():
         animation = n.split(" ")[0]
 
-        rectangle = {
+        quad = {
             "x": d["frame"]["x"],
             "y": d["frame"]["y"],
             "width": d["frame"]["w"],
@@ -32,7 +32,7 @@ def main():
             "y": d["spriteSourceSize"]["y"],
         }
 
-        frame = {"duration": 200, "offset": offset, "rectangle": rectangle}
+        frame = {"duration": 200, "offset": offset, "quad": quad}
         result["animations"].setdefault(animation, {"frames": []})["frames"].append(
             frame
         )
