@@ -40,6 +40,10 @@ def main():
     with open(args.destination, "w") as f:
         json.dump(result, f, indent=2)
 
+    path = args.destination.rsplit(".", 1)[0] + ".lua"
+    with open(path, "w") as f:
+        f.write("return {\n}\n")
+
 
 if __name__ == "__main__":
     main()
