@@ -33,9 +33,8 @@ def main():
         }
 
         frame = {"duration": 200, "offset": offset, "quad": quad}
-        result["animations"].setdefault(animation, {"frames": []})["frames"].append(
-            frame
-        )
+
+        result["timelines"].setdefault(animation, {"frames": []})["frames"].append(frame)
 
     with open(args.destination, "w") as f:
         json.dump(result, f, indent=2)
